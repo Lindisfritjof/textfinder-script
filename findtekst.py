@@ -8,20 +8,26 @@ import re
 import fileinput
 import pypandoc
 
-
+# get user input on which file to make
 originalFile = input("indtast filnavn her: ")
-output = pypandoc.convert_file(originalFile, 'plain', outputfile="data.txt")
+
+# convert the filetype to plaintext
+output = pypandoc.convert_file(originalFile, 'plain', outputfile=".data.txt")
 
 try:
-    file = open("data.txt")  # open the file
+    file = open(".data.txt")
+
+    # identify emails in the .txt file.
     for line in file:
         line = line.strip()
         emails = re.findall("[0-9a-zA-z]+@[0-9a-zA-z]+.[0-9a-zA-z]+", line)
+        
         if(len(emails) > 0):
 
-            # print a nice, clean column of emails
-            for mail in emails:
-                print(mail)
+            # write extracted emails to new file
+            with open("extracted_emails.txt", "a") as f:
+                for mail in emails:
+                    f.write(f"{mail}\n")
 
 except FileNotFoundError as e:
     print(e)
