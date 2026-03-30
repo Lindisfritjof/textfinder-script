@@ -1,17 +1,21 @@
-from bs4 import BeautifulSoup
+'''
+Take a filename in the current folder as input and check for mail-adresses
+return those adresses in a tidy fashion, so they can be copied and used with
+email-program.
+'''
+# get regular expression-functionality
 import re
-from pathlib import Path
 
-# Open the directory as a file to be parsed
-with open("Digitale-Licenser-Hjemmeside-main/index.html") as fp:
+try:
+    file = open("data.txt")  # open the file
+    for line in file:
+        line = line.strip()
+        emails = re.findall("[0-9a-zA-z]+@[0-9a-zA-z]+.[0-9a-zA-z]+", line)
+        if(len(emails) > 0):
 
-# Parse the file.
-    soup = BeautifulSoup(fp, 'html.parser')
+            # print a nice, clean column of emails
+            for mail in emails:
+                print(mail)
 
-# find and write all the anchor tags with "href" attribute also starting with "https://"
-with open('links.txt', 'w') as f:
-    # display the actual urls one at the time
-    for link in soup.find_all('a', attrs={'href': re.compile("^https://")}):
-        print(link.get('href'), file=f)
-
-
+except FileNotFoundError as e:
+    print(e)
