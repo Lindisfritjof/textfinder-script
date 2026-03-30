@@ -5,7 +5,6 @@ inside it. return those adresses in a tidy fashion, so they can be copied
 '''
 
 import re
-import fileinput
 import pypandoc
 
 # get user input on which file to make
