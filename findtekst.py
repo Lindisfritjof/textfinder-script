@@ -1,11 +1,15 @@
 '''
-Take a filename "data.txt" and check for mail-adresses
-return those adresses in a tidy fashion, so they can be copied and used with
-email-program.
+Take a filename as input, convert the file to .txt and check for mail-adresses
+inside it. return those adresses in a tidy fashion, so they can be copied
+ and used with email-program.
 '''
 
-# get regular expression-functionality
 import re
+import fileinput
+import pypandoc
+
+originalFile = input("indtast filnavn her: ")
+output = pypandoc.convert_file(originalFile, 'plain', outputfile="data.txt")
 
 try:
     file = open("data.txt")  # open the file
@@ -20,4 +24,3 @@ try:
 
 except FileNotFoundError as e:
     print(e)
-
