@@ -8,6 +8,7 @@ import re
 import fileinput
 import pypandoc
 
+
 originalFile = input("indtast filnavn her: ")
 output = pypandoc.convert_file(originalFile, 'plain', outputfile="data.txt")
 
