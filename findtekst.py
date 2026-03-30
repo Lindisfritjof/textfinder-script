@@ -1,9 +1,12 @@
+#!/usr/bin/env python3
+
 '''
 Take a filename as input, convert the file to .txt and check for mail-adresses
 inside it. return those adresses in a tidy fashion, so they can be copied
  and used with email-program.
 '''
 
+import os
 import re
 import pypandoc
 
