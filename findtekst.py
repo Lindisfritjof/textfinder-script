@@ -1,8 +1,9 @@
 '''
-Take a filename in the current folder as input and check for mail-adresses
+Take a filename "data.txt" and check for mail-adresses
 return those adresses in a tidy fashion, so they can be copied and used with
 email-program.
 '''
+
 # get regular expression-functionality
 import re
 
@@ -19,3 +20,4 @@ try:
 
 except FileNotFoundError as e:
     print(e)
+
