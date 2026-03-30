@@ -20,13 +20,23 @@ try:
     for line in file:
         line = line.strip()
         emails = re.findall("[0-9a-zA-z]+@[0-9a-zA-z]+.[0-9a-zA-z]+", line)
-        
+             
         if(len(emails) > 0):
+            
+            maillist = []
+            
+            # add each mail to empty list
+            for mail in emails:
 
-            # write extracted emails to new file
+                # check if mail is already in list
+                if mail not in maillist:
+                    maillist.append(mail)
+
+            # write a new file with a column of the emails
             with open("extracted_emails.txt", "a") as f:
-                for mail in emails:
+                for mail in maillist:
                     f.write(f"{mail}\n")
 
 except FileNotFoundError as e:
     print(e)
+    
